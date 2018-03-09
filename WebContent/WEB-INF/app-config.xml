@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
+	<context:component-scan base-package="total.controller" />
+	<context:component-scan base-package="total.service" />
+	<!-- id를 통해서 Spring 객체를 확보해서 쓰기 때문에..! 이 이름으로만 등록 가능 사용가능한 클래스로는 CommonsMultipartResolver 
+		(commons-fileupload 라이브러리로 처리함..maven을 통해 라이브러리 연동.) / StatnderSerlvetMultipartResolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="uploadTempDir" value="/temp" />
+	</bean>
+	<!-- transaction setting -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds" />
+	</bean>
+	<!--  -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+		<!-- mybatis setting -->
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.10.82:1521:xe" />
+		<property name="username" value="root" />
+		<property name="password" value="oracle" />
+	</bean>
+	<!-- <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="factory">
+		<property name="dataSource" ref="ds" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mappers/show_mapper.xml</value>
+				<value>classpath:mappers/pet-mapper.xml</value>
+				<value>classpath:mappers/comment-mapper.xml</value>
+				<value>classpath:mappers/coupon-mapper.xml</value>
+			</list>
+		</property>
+	</bean> 
+	<bean id="sqlTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="factory" />
+	</bean>-->
+</beans>
