@@ -8,7 +8,10 @@
 a {
 	text-decoration: none;
 }
-
+input {
+	padding: 3px;
+	width: 300px;
+}
 </style>
 <body>
 	<div align="center">
@@ -19,30 +22,27 @@ a {
 			</div>
 			<hr />
 			<div align="right" style="padding-right: 20px;">
-				<a href="/login"><span>Sign in</span></a> <span>or</span> <span
-					style="font-weight: bold">log in</span>
+				<span
+					style="font-weight: bold">Sign in</span> <span>or</span> 
+				<a href="<%=request.getContextPath() %>/regist"><span>Sign up</span></a>
 			</div>
 			<hr />
 			<div style="font-size: 17pt; margin-top: 50px;">
-				JOIN US<br /> <span style="font-size: 11pt;">회원가입시 모든 요소는
-					필수기입 항목입니다.</span>
+				LOGIN<br /> <span style="font-size: 11pt;">로그인 페이지입니다.</span>
 			</div>
 			<div>
 				<form action="<%=request.getContextPath() %>/login"
 					method="post" style="width: 330px; text-align: left;"
 					autocomplete="off">
 					<div style="margin-top: 20px;">
-						<span>ID(*)</span> <small id="checkrst"></small><br /> <input
-							type="text" name="id" id="id" placeholder="아이디"
-							pattern="[a-zA-Z]+">
+						<b>ID(*)</b> <small id="checkrst"></small><br /> <input
+							type="text" name="id" id="id" pattern="[a-zA-Z]+">
 					</div>
 					<div style="margin-top: 20px;">
-						<span>PASS(*)</span><br /> <input type="password" name="pass"
-							placeholder="비밀번호">
+						<b>PASS(*)</b><br /> <input type="password" name="password">
 					</div>
 					<div style="margin-top: 20px;">
-						<button id="sbt" type="submit" style="width: 100%; height: 30px;"
-							disabled>로 그 인</button>
+						<button id="sbt" type="submit" style="width: 100%; height: 30px;">로 그 인</button>
 					</div>
 				</form>
 			</div>

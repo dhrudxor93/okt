@@ -19,10 +19,17 @@
 				<small>- ${ment } -</small>
 			</div>
 			<hr/>
+			<%if(session.getAttribute("logon")!=null){%>
 			<div align="right" style="padding-right: 20px;">
-				<a href="<%=request.getContextPath() %>/login"><span>Sign in</span></a> <span>or</span> 
-				<a href="<%=request.getContextPath() %>/join"><span>Sign up</span></a>
+				${logon } 님 어서오세요
+				<a href="<%=request.getContextPath()%>/logout">로그아웃</a>
 			</div>
+			<%}else{ %>
+			<div align="right" style="padding-right: 20px;">
+				<a href="<%=request.getContextPath() %>/log"><span>Sign in</span></a> <span>or</span> 
+				<a href="<%=request.getContextPath() %>/regist"><span>Sign up</span></a>
+			</div>
+			<%} %>
 			<hr/>
 		</div>
 	</div>

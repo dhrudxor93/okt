@@ -6,4 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addMember">
 		insert into member values(#{id}, #{email}, #{password}, 0)
 	</insert>
+	<select id="login" resultType="hashmap">
+		select * from member where ID=#{id} and PASSWORD=#{password}
+	</select>
 </mapper>
