@@ -22,7 +22,11 @@ public class MemberService {
 	public boolean loginMember(Map<String, String> param) {
 		// TODO Auto-generated method stub
 		Map map = template.selectOne("member.login",param);
-		System.out.println(map);
-		return true;
+		if(map!=null) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	} 
 }

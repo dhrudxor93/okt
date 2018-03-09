@@ -34,7 +34,7 @@ input {
 			</div>
 			<div>
 				<c:if test="${empty msg }">
-					<span style="color:red">${err }</span>
+					<span style="color:red">${msg }</span>
 				</c:if>
 				<form action="<%=request.getContextPath() %>/register" method="post"
 					style="width: 330px; text-align: left; line-height: 34px;" autocomplete="off">

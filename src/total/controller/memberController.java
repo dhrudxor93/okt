@@ -31,8 +31,8 @@ public class memberController {
 	// 등록
 	@RequestMapping(path = "/register", method = RequestMethod.POST)
 	public String registPostHandle(Model model, HttpSession session, @RequestParam Map<String, String> param) {
-		boolean rst = memberService.addNewMember(param);
 		try {
+			boolean rst = memberService.addNewMember(param);
 			if (rst) {
 				session.setAttribute("logon", param.get("id"));
 				return "redirect:/index";
@@ -47,14 +47,13 @@ public class memberController {
 	// 로그인
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	public String loginHandle(Model model, HttpSession session, @RequestParam Map<String, String> param) {
-		model.addAttribute("ment", greetService.make());
 		boolean rst = memberService.loginMember(param);
 		if (rst) {
 			session.setAttribute("logon", param.get("id"));
 			return "/index";
 		} else {
-			model.addAttribute("fail", "실패하였습니다.");
-			return "/register";
+			model.addAttribute("msg", "실패하였습니다.");
+			return "/login";
 		}
 	}
 }

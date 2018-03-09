@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <title>Spring - managed by GIT</title>
 </head>
@@ -31,6 +31,9 @@ input {
 				LOGIN<br /> <span style="font-size: 11pt;">로그인 페이지입니다.</span>
 			</div>
 			<div>
+				<c:if test="${empty msg }">
+					<span style="color:red">${msg }</span>
+				</c:if>
 				<form action="<%=request.getContextPath() %>/login"
 					method="post" style="width: 330px; text-align: left;"
 					autocomplete="off">
