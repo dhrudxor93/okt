@@ -21,8 +21,9 @@
 			<hr/>
 			<%if(session.getAttribute("logon")!=null){%>
 			<div align="right" style="padding-right: 20px;">
-				${logon } 님 어서오세요
-				<a href="<%=request.getContextPath()%>/logout">로그아웃</a>
+				${logon } 님 어서오세요<br/>
+				<a href="<%=request.getContextPath()%>/logout">로그아웃</a> / 
+				<a href="<%=request.getContextPath() %>/chat">채팅방</a>
 			</div>
 			<%}else{ %>
 			<div align="right" style="padding-right: 20px;">

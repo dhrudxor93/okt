@@ -56,4 +56,11 @@ public class memberController {
 			return "/login";
 		}
 	}
+	
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logoutHandle(Model model, HttpSession session) {
+		session.removeAttribute("logon");
+		return "/index";
+	}
 }
