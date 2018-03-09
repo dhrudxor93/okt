@@ -8,7 +8,10 @@
 a {
 	text-decoration: none;
 }
-
+input {
+	padding: 3px;
+	width: 300px;
+}
 </style>
 <body>
 	<div align="center">
@@ -32,21 +35,18 @@ a {
 					method="post" style="width: 330px; text-align: left;"
 					autocomplete="off">
 					<div style="margin-top: 20px;">
-						<span>ID(*)</span> <small id="checkrst"></small><br /> <input
-							type="text" name="id" id="id" placeholder="아이디"
-							pattern="[a-zA-Z]+">
+						<b>ID(*)</b> <small id="checkrst"></small><br /> <input
+							type="text" name="id" id="id" pattern="[a-zA-Z]+">
 					</div>
 					<div style="margin-top: 20px;">
-						<span>PASS(*)</span><br /> <input type="password" name="pass"
-							placeholder="비밀번호">
+						<b>PASS(*)</b><br /> <input type="password" name="pass">
 					</div>
 					<div style="margin-top: 20px;">
-						<span>EMAIL(*)</span><br /> <input type="email" name="email"
-							placeholder="닉네임" pattern="[가-힇]+">
+						<b>EMAIL(*)</b><br /> <input type="email" name="email">
 					</div>
 					<div style="margin-top: 20px;">
-						<button id="sbt" type="submit" style="width: 100%; height: 30px;"
-							disabled>가 입 신 청</button>
+						<button id="sbt" type="submit" style="width: 100%; height: 30px;">가
+							입 신 청</button>
 					</div>
 				</form>
 			</div>

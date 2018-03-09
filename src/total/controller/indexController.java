@@ -13,16 +13,25 @@ import total.service.GreetService;
 public class indexController {
 	@Autowired
 	GreetService greetService;
+	// 인덱스
 	@RequestMapping({"/index","/"})
 	public String indexHandler(Model model) {
 		model.addAttribute("ment", greetService.make());
 		return "index";
 	}
+	// 등록
 	@RequestMapping("/regist")
-	public String regitHandle(Model model) {
+	public String registHandle(Model model) {
 		model.addAttribute("ment", greetService.make());
 		return "register";
 	}
+	// 로그인
+	@RequestMapping("/login")
+	public String loginHandle(Model model) {
+		model.addAttribute("ment", greetService.make());
+		return "login";
+	}
+	// 결과
 	@RequestMapping("/result")
 	public String resultHandle(@ModelAttribute(name="user") User user) {
 		return "result";
