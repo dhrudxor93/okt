@@ -5,16 +5,25 @@
 <head>
 <title>Spring - managed by GIT</title>
 </head>
+<style>
+	a {
+		text-decoration: none;
+	}
+	
+</style>
 <body>
 	<div align="center">
 		<div style="width: 980px;">
 			<div>
 				<h1>Spring Project</h1>
-				<small>${ment }</small>
-				<hr>
+				<small>- ${ment } -</small>
 			</div>
-			<div>
+			<hr/>
+			<div align="right" style="padding-right: 20px;">
+				<a href="<%=request.getContextPath() %>/login"><span>Sign in</span></a> <span>or</span> 
+				<a href="<%=request.getContextPath() %>/join"><span>Sign up</span></a>
 			</div>
+			<hr/>
 		</div>
 	</div>
 </body>
