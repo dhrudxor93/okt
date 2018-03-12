@@ -9,4 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" resultType="hashmap">
 		select * from member where ID=#{id} and PASSWORD=#{password}
 	</select>
+	<select id="info" resultType="string">
+		select lv from member where ID=#{id}
+	</select>
 </mapper>

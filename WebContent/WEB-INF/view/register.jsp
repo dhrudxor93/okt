@@ -24,8 +24,8 @@ input {
 			</div>
 			<hr />
 			<div align="right" style="padding-right: 20px;">
-				<a href="<%=request.getContextPath() %>/login"><span>Sign in</span></a> <span>or</span> 
-				<a href="<%=request.getContextPath() %>/regist"><span>Sign up</span></a>
+				<a href="<%=request.getContextPath() %>/log"><span>Sign in</span></a> <span>or</span> 
+				<span style="font-weight: bold">Sign up</span></a>
 			</div>
 			<hr />
 			<div style="font-size: 17pt; margin-top: 50px;">

@@ -21,13 +21,7 @@ public class memberController {
 	@Autowired
 	MemberService memberService;
 
-	/*
-	 * // 등록
-	 * 
-	 * @RequestMapping(path="/register", method=RequestMethod.GET) public String
-	 * registGetHandle(Model model) { model.addAttribute("ment",
-	 * greetService.make()); return "register"; }
-	 */
+
 	// 등록
 	@RequestMapping(path = "/register", method = RequestMethod.POST)
 	public String registPostHandle(Model model, HttpSession session, @RequestParam Map<String, String> param) {
@@ -56,11 +50,11 @@ public class memberController {
 			return "/login";
 		}
 	}
-	
+
 	// 로그아웃
 	@RequestMapping("/logout")
 	public String logoutHandle(Model model, HttpSession session) {
 		session.removeAttribute("logon");
-		return "/index";
+		return "redirect:/index";
 	}
 }

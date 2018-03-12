@@ -31,7 +31,7 @@ input {
 				LOGIN<br /> <span style="font-size: 11pt;">로그인 페이지입니다.</span>
 			</div>
 			<div>
-				<c:if test="${empty msg }">
+				<c:if test="${msg != null }">
 					<span style="color:red">${msg }</span>
 				</c:if>
 				<form action="<%=request.getContextPath() %>/login"

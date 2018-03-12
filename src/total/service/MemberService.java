@@ -28,5 +28,8 @@ public class MemberService {
 		else {
 			return false;
 		}
+	}
+	public String Idinfo(String s) {
+		return template.selectOne("member.info",s);
 	} 
 }

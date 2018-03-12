@@ -6,10 +6,9 @@
 <title>Spring - managed by GIT</title>
 </head>
 <style>
-	a {
-		text-decoration: none;
-	}
-	
+a {
+	text-decoration: none;
+}
 </style>
 <body>
 	<div align="center">
@@ -18,20 +17,27 @@
 				<h1>Spring Project</h1>
 				<small>- ${ment } -</small>
 			</div>
-			<hr/>
-			<%if(session.getAttribute("logon")!=null){%>
-			<div align="right" style="padding-right: 20px;">
-				${logon } 님 어서오세요<br/>
-				<a href="<%=request.getContextPath()%>/logout">로그아웃</a> / 
-				<a href="<%=request.getContextPath() %>/chat">채팅방</a>
-			</div>
-			<%}else{ %>
-			<div align="right" style="padding-right: 20px;">
-				<a href="<%=request.getContextPath() %>/log"><span>Sign in</span></a> <span>or</span> 
-				<a href="<%=request.getContextPath() %>/regist"><span>Sign up</span></a>
-			</div>
-			<%} %>
-			<hr/>
+			<hr />
+			<c:if test="${logon!=null }">
+				<div align="right" style="padding-right: 20px;">
+					${logon } 님 어서오세요<br /> <a
+						href="<%=request.getContextPath()%>/logout">로그아웃</a> / <a
+						href="<%=request.getContextPath()%>/chat">채팅방</a>
+					<%-- <c:if test="${lv!=null }">
+						<script>
+							 window.alert("${lv}");
+						</script>
+					</c:if> --%>
+				</div>
+			</c:if>
+			<c:if test="${empty logon }">
+				<div align="right" style="padding-right: 20px;">
+					<a href="<%=request.getContextPath()%>/log"><span>Sign
+							in</span></a> <span>or</span> <a href="<%=request.getContextPath()%>/regist"><span>Sign
+							up</span></a>
+				</div>
+			</c:if>
+			<hr />
 		</div>
 	</div>
 </body>
