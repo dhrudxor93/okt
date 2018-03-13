@@ -82,8 +82,8 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
-		<!-- 메일 발송 인증처리 구현-->
+
+		<!-- 메일 발송 인증처리 구현 -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -97,6 +97,11 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>4.3.14.RELEASE</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>4.3.14.RELEASE</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -5,6 +5,15 @@
 <head>
 <title>Spring - managed by GIT</title>
 </head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 a {
 	text-decoration: none;
@@ -39,6 +48,36 @@ a {
 			</c:if>
 			<hr />
 		</div>
+		<div>
+			<div class="alert alert-info">
+				<b>현재 접속자 수 : <span id="cnt"></span></b>/ <strong>서버알림</strong><span
+					id="info">.</span>
+			</div>
+		</div>
 	</div>
+
+	<script><%-- WebSocket을 하기 위해선 script처리가 필요하다.--%>
+		
+	<%-- 내 ip주소를 적고 / app-config(Spring 설정파일)에서 설정한 path경로를 적어두면 된다.--%>
+		/* 	var ws = new WebSocket("ws://192.168.10.82/chap05/handle"); */
+		var ws = new WebSocket(
+				"ws://${pageContext.request.serverName }/chap05/handle");
+	<%-- ${pageContext.request.serverName}으로 설정해두면 어디의 ip주소이든 일단 접속가능하다.--%>
+		// 연결이 됬을 때..
+		ws.onopen = function() {
+			console.log("opened");
+			console.log(this);
+		}
+		// 메세지가 들어올 때
+		ws.onmessage = function(resp) {
+			var obj = JSON.parse(resp.data);
+			$("#cnt").html(obj.cnt);
+			$("#info").html(obj.info);
+		}
+		// 연결이 끊길 때
+		ws.onclose = function() {
+			window.alert("연결이 해제되었습니다.")
+		}
+	</script>
 </body>
 </html>
