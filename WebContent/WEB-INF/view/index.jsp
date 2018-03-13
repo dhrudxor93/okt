@@ -60,13 +60,22 @@ a {
 		
 	<%-- 내 ip주소를 적고 / app-config(Spring 설정파일)에서 설정한 path경로를 적어두면 된다.--%>
 		/* 	var ws = new WebSocket("ws://192.168.10.82/chap05/handle"); */
-		var ws = new WebSocket(
-				"ws://${pageContext.request.serverName }/chap05/handle");
+		var ws = new WebSocket("ws://${pageContext.request.serverName }/chap05/handle");
+		var ac = new WebSocket("ws://${pageContext.request.serverName}/chap05/alert");
 	<%-- ${pageContext.request.serverName}으로 설정해두면 어디의 ip주소이든 일단 접속가능하다.--%>
 		// 연결이 됬을 때..
 		ws.onopen = function() {
 			console.log("opened");
 			console.log(this);
+		}
+		ac.onopen = function(){
+			console.log(this);
+		}
+		ac.onmessage = function(resp){
+			var obj = JSON.parse(resp.data);
+			if(obj.sid){
+				window.alert("F5를 눌러주세요");
+			}
 		}
 		// 메세지가 들어올 때
 		ws.onmessage = function(resp) {

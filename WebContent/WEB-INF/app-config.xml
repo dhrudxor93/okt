@@ -17,9 +17,13 @@
 	<context:component-scan base-package="total.controller" />
 	<context:component-scan base-package="total.service" />
 	
-	<!--  WebSocket Handle config-->
+	<!--  WebSocket Handle setting -->
 	<websocket:handlers>
 		<websocket:mapping handler="wsController" path="/handle"/>
+		<websocket:mapping handler="AlertController" path="/alert"/>
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
 	</websocket:handlers>	
 	
 	<!-- id를 통해서 Spring 객체를 확보해서 쓰기 때문에..! 이 이름으로만 등록 가능 사용가능한 클래스로는 CommonsMultipartResolver 
@@ -36,6 +40,7 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="ds" />
 	</bean>
+	
 	<!-- View resolver Setting -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"/>

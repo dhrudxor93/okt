@@ -28,7 +28,7 @@ import com.google.gson.Gson;
  * 
  * 	WebSocket Handler 의 매핑은.. spring 설정파일(app-config)에서 
  */
-@Controller("wsController") // 임의로 바꿀 수도 있다
+@Controller("wsController") // controller에 이름을 따로 입력해두지 않으면 클래스명 맨 앞만 소문자로 바뀌고 등록된다.(wSController) 임의로 바꿀 수도 있다
 public class WSController extends TextWebSocketHandler {
 	
 	Set<WebSocketSession> wsSessions;
@@ -41,8 +41,8 @@ public class WSController extends TextWebSocketHandler {
 	
 	@Override // 클라이언트 측에서 웹소켓 연결이 되었을 때
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("afterConnectionEstablished.." + session);
-		System.out.println(session.getRemoteAddress().getAddress().getHostAddress());// IP주소가 나옴
+		//System.out.println("afterConnectionEstablished.." + session);
+		//System.out.println(session.getRemoteAddress().getAddress().getHostAddress());// IP주소가 나옴
 		wsSessions.add(session);
 		Map map = new HashMap();
 		map.put("cnt", wsSessions.size() );
@@ -54,12 +54,12 @@ public class WSController extends TextWebSocketHandler {
 
 	@Override // 클라이언트 측에서 메세지가 들어올 때.
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		System.out.println("handleTextMessage.." + session + " / " + message);
+		//System.out.println("handleTextMessage.." + session + " / " + message);
 	}
 
 	@Override // 클라이언트측과 연결이 해제되었을 떄
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println("afterConnectionClosed.." + session);
+		//System.out.println("afterConnectionClosed.." + session);
 		wsSessions.remove(session);
 		Map map = new HashMap();
 		map.put("cnt", wsSessions.size() );

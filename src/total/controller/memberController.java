@@ -44,7 +44,8 @@ public class memberController {
 		boolean rst = memberService.loginMember(param);
 		if (rst) {
 			session.setAttribute("logon", param.get("id"));
-			return "/index";
+			session.setAttribute("sid", "로그인");
+			return "redirect:/index";
 		} else {
 			model.addAttribute("msg", "실패하였습니다.");
 			return "/login";
