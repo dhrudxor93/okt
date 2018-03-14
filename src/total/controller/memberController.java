@@ -22,10 +22,10 @@ import total.service.MemberService;
 public class memberController {
 	@Autowired
 	GreetService greetService;
-	
+
 	@Autowired
 	MemberService memberService;
-	
+
 	@Autowired
 	WebSocketMap sessions;
 
@@ -37,8 +37,9 @@ public class memberController {
 			if (rst) {
 				session.setAttribute("logon", param.get("id"));
 				return "redirect:/index";
+			} else {
+				throw new Exception();
 			}
-			throw new Exception();
 		} catch (Exception e) {
 			model.addAttribute("msg", "문제발생");
 			return "/register";
@@ -53,13 +54,16 @@ public class memberController {
 			if (rst) {
 				session.setAttribute("logon", param.get("id"));
 				List<WebSocketSession> s = sessions.get(session.getId());
-				for (WebSocketSession ws : s) {
-					ws.sendMessage(new TextMessage("로그인"));
+				if (s != null) {
+					for (WebSocketSession ws : s) {
+						ws.sendMessage(new TextMessage("로그인"));
+					}
 				}
 				return "redirect:/index";
 			}
 			throw new Exception();
 		} catch (Exception e) {
+			System.out.println("에러" + e.toString());
 			model.addAttribute("msg", "실패하였습니다.");
 			return "/login";
 		}
@@ -72,13 +76,24 @@ public class memberController {
 		try {
 			session.removeAttribute("logon");
 			List<WebSocketSession> s = sessions.get(session.getId());
-			for (WebSocketSession ws : s) {
-				ws.sendMessage(new TextMessage("로그아웃"));
+			if (s != null) {
+				for (WebSocketSession ws : s) {
+					ws.sendMessage(new TextMessage("로그아웃"));
+				}
 			}
 			return "redirect:/index";
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return "redirect:/";
 		}
-		
+	}
+
+	// 친구목록
+	@RequestMapping("/friend")
+	public String findHandle(Model model, HttpSession session) {
+		String id = (String) session.getAttribute("logon");
+		System.out.println(id);
+		List<Map> list = memberService.find(id);
+		model.addAttribute("friend", list);
+		return "/friendsearch";
 	}
 }

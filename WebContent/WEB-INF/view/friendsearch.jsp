@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Spring - managed by GIT</title>
+<title>친구찾기</title>
 </head>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -36,15 +36,12 @@ a {
 			</div>
 			<hr />
 			<c:if test="${logon!=null }">
+				<div align="center">
+					<input type="text" name="friend" id=fiend/>
+				</div>
 				<div align="right" style="padding-right: 20px;">
 					${logon } 님 어서오세요<br /> <a
-						href="<%=request.getContextPath()%>/logout">로그아웃</a> / <a
-						href="<%=request.getContextPath()%>/friend">친구목록</a> /
-					<%-- <c:if test="${lv!=null }">
-						<script>
-							 window.alert("${lv}");
-						</script>
-					</c:if> --%>
+						href="<%=request.getContextPath()%>/logout">로그아웃</a> / <b>친구목록</b>
 				</div>
 			</c:if>
 			<c:if test="${empty logon }">
@@ -63,6 +60,9 @@ a {
 			</div>
 		</div>
 	</div>
+	<div>
+		${friend };
+	</div>
 	<script><%-- WebSocket을 하기 위해선 script처리가 필요하다.--%>
 		
 	<%-- 내 ip주소를 적고 / app-config(Spring 설정파일)에서 설정한 path경로를 적어두면 된다.--%>
@@ -77,17 +77,6 @@ a {
 			console.log("opened");
 			console.log(this);
 		}
-		// 메세지가 들어올 때
-		ws.onmessage = function(resp) {
-			var obj = JSON.parse(resp.data);
-			$("#cnt").html(obj.cnt);
-			$("#info").html(obj.info);
-		}
-		// 연결이 끊길 때
-		ws.onclose = function() {
-			window.alert("연결이 해제되었습니다.")
-		}
-		
 		ac.onopen = function() {
 			console.log(this);
 		}
@@ -99,6 +88,16 @@ a {
 				$("#warn2").show();
 			}
 			console.log(rst);
+		}
+		// 메세지가 들어올 때
+		ws.onmessage = function(resp) {
+			var obj = JSON.parse(resp.data);
+			$("#cnt").html(obj.cnt);
+			$("#info").html(obj.info);
+		}
+		// 연결이 끊길 때
+		ws.onclose = function() {
+			window.alert("연결이 해제되었습니다.")
 		}
 	</script>
 </body>
