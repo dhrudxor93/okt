@@ -17,6 +17,9 @@
 	<context:component-scan base-package="total.controller" />
 	<context:component-scan base-package="total.service" />
 	
+	<!-- websocket setting -->
+	<bean id="sessions" class="total.model.WebSocketMap"/>
+	
 	<!--  WebSocket Handle setting -->
 	<websocket:handlers>
 		<websocket:mapping handler="wsController" path="/handle"/>

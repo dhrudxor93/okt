@@ -26,6 +26,14 @@ a {
 				<h1>Spring Project</h1>
 				<small>- ${ment } -</small>
 			</div>
+			<div class="alert alert-warning alert-dismissible" id="warn1" style="display: none">
+				<a href="javascript:location.reload();" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>경고!</strong> 다른 윈도우 혹은 탭에서 로그인되었습니다. F5를 눌러주세요.
+			</div>
+			<div class="alert alert-warning alert-dismissible" id="warn2" style="display: none">
+				<a href="javascript:location.reload();" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>경고!</strong> 다른 윈도우 혹은 탭에서 로그아웃되었습니다. F5를 눌러주세요.
+			</div>
 			<hr />
 			<c:if test="${logon!=null }">
 				<div align="right" style="padding-right: 20px;">
@@ -60,22 +68,27 @@ a {
 		
 	<%-- 내 ip주소를 적고 / app-config(Spring 설정파일)에서 설정한 path경로를 적어두면 된다.--%>
 		/* 	var ws = new WebSocket("ws://192.168.10.82/chap05/handle"); */
-		var ws = new WebSocket("ws://${pageContext.request.serverName }/chap05/handle");
-		var ac = new WebSocket("ws://${pageContext.request.serverName}/chap05/alert");
+		var ws = new WebSocket(
+				"ws://${pageContext.request.serverName }/chap05/handle");
+		var ac = new WebSocket(
+				"ws://${pageContext.request.serverName}/chap05/alert");
 	<%-- ${pageContext.request.serverName}으로 설정해두면 어디의 ip주소이든 일단 접속가능하다.--%>
 		// 연결이 됬을 때..
 		ws.onopen = function() {
 			console.log("opened");
 			console.log(this);
 		}
-		ac.onopen = function(){
+		ac.onopen = function() {
 			console.log(this);
 		}
-		ac.onmessage = function(resp){
-			var obj = JSON.parse(resp.data);
-			if(obj.sid){
-				window.alert("F5를 눌러주세요");
+		ac.onmessage = function(rst) {
+			if(rst.data == "로그인"){
+				$("#warn1").show();
 			}
+			if(rst.data == "로그아웃"){
+				$("#warn2").show();
+			}
+			console.log(rst);
 		}
 		// 메세지가 들어올 때
 		ws.onmessage = function(resp) {
