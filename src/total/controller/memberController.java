@@ -64,8 +64,9 @@ public class memberController {
 			throw new Exception();
 		} catch (Exception e) {
 			System.out.println("에러" + e.toString());
+			model.addAttribute("main","login.jsp");
 			model.addAttribute("msg", "실패하였습니다.");
-			return "/login";
+			return "el";
 		}
 
 	}

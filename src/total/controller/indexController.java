@@ -32,7 +32,7 @@ public class indexController {
 	// 등록페이지로 가기 
 	@RequestMapping(path="/regist")
 	public String registHandle(Model model) {
-		return "register";
+		return "regist";
 	}
 	// 등록페이지로 가기 
 	@RequestMapping(path="/log")

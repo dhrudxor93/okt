@@ -45,10 +45,20 @@
 	</bean>
 	
 	<!-- View resolver Setting -->
+	<!-- tiles -->
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<array>
+				<value>/WEB-INF/tiles/*-tiles.xml</value>
+			</array>
+		</property>
+	</bean>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+
 	
 	<!-- mybatis setting -->
 	<bean id="ds"

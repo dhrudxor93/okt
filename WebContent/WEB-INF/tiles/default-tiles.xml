@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="default" template="/WEB-INF/view/mainTemplate.jsp">
+		<put-attribute name="title" value="Spring MVC"/>
+		<put-attribute name="side" value="/WEB-INF/view/side-01.jsp"/>
+	</definition>
+	
+	<definition name="index" extends="default">
+		<put-attribute name="main" value="/WEB-INF/view/login.jsp"/>	
+	</definition>
+	
+	<definition name="regist" extends="default">
+		<put-attribute name="title" value="Sign Up Spring"/>
+		<put-attribute name="main" value="/WEB-INF/view/register.jsp"/>	
+	</definition>
+	
+	<!-- EL support (EL표기시 expression으로 표기)-->
+	<definition name="el" extends="default">
+		<put-attribute name="main" expression="/WEB-INF/view/${main}"/>
+	</definition>
+</tiles-definitions>
